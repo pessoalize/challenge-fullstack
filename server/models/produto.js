@@ -5,7 +5,7 @@ module.exports = mongoose => {
             {
                 nome: String,
                 descricao: String,
-                ativo: Boolean,
+                status: Boolean,
                 preco: Number
             },
             { timestamps: true }

@@ -1,6 +1,12 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Switch, Route, Link } from "react-router-dom";
+
+import AddProduto from "./components/add-produto";
+import Produto from "./components/produto";
+import ListProdutos from "./components/list-produto";
 
 function App() {
   return (

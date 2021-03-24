@@ -16,12 +16,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
-// simple route
+// teste inicial
 app.get("/", (req, res) => {
     res.json({message: "testando aplicação"});
 });
 
-const db = require("./app/models");
+const db = require("./models");
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -35,6 +35,7 @@ db.mongoose
         process.exit();
     });
 
+require("./routes/produtoRoute")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
