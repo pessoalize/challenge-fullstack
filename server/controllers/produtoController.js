@@ -1,20 +1,17 @@
 const db = require("../models");
 const Produto = db.produtos;
 
-// Create and Save a new Produto
 exports.create = async (req, res) => {
-// Validate request
+
     if (!req.body) {
         return res.status(400).send({message: "Erro na requisição para criar o produto!"});
     }
 
-    // Create a Produto
     const produto = new Produto({
         nome: req.body.nome,
         descricao: req.body.descricao
     });
 
-    // Save Produto in the database
      await produto
         .save()
         .then(data => {
@@ -28,7 +25,6 @@ exports.create = async (req, res) => {
         });
 };
 
-// Retrieve all Produtos from the database.
 exports.findAll = (req, res) => {
     const nome = req.query.nome;
     let condition = nome ? {nome: {$regex: new RegExp(nome), $options: "i"}} : {};
@@ -45,7 +41,6 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single Produto with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
@@ -62,7 +57,6 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update a Produto by the id in the request
 exports.update = (req, res) => {
     if (!req.body) {
         return res.status(400).send({
@@ -87,7 +81,6 @@ exports.update = (req, res) => {
         });
 };
 
-// Delete a Produto with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
 
@@ -110,7 +103,6 @@ exports.delete = (req, res) => {
         });
 };
 
-// Delete all Produtos from the database.
 exports.deleteAll = (req, res) => {
     Produto.deleteMany({})
         .then(data => {
@@ -125,17 +117,3 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
-
-// // Find all published Produtos
-// exports.findAllPublished = (req, res) => {
-//     Produto.find({ published: true })
-//         .then(data => {
-//             res.send(data);
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message:
-//                     err.message || "Error ao recuperar os produtos."
-//             });
-//         });
-// };
